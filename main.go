@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func squre(r float64) (res float64, err error) {
+func Squre(r float64) (res float64, err error) {
 
 	defer func() {
 		if v := recover(); v != nil {
@@ -37,7 +37,7 @@ func main() {
 	var r float64
 	fmt.Println("enter radius")
 	fmt.Fscan(os.Stdin, &r)
-	res, err := squre(r)
+	res, err := Squre(r)
 	fmt.Println(res, err)
 
 }

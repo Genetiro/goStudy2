@@ -3,12 +3,16 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
+	"runtime/trace"
 	"sync"
 	"sync/atomic"
 	"time"
 )
 
 func main() {
+	trace.Start(os.Stderr)
+	defer trace.Stop()
 
 	var state = make(map[int]int)
 
@@ -17,7 +21,7 @@ func main() {
 	var readOp uint64
 	var writeOp uint64
 
-	for r := 0; r < 90; r++ {
+	for r := 0; r < 2; r++ {
 		go func() {
 			total := 0
 			for {
@@ -33,7 +37,7 @@ func main() {
 		}()
 	}
 
-	for w := 0; w < 10; w++ {
+	for w := 0; w < 1; w++ {
 		go func() {
 			for {
 				key := rand.Intn(5)
